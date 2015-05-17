@@ -1,5 +1,8 @@
 #include "AKTexture.h"
 
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+
 AKTexture::AKTexture()
 {
 	//Initialize
@@ -13,7 +16,7 @@ AKTexture::~AKTexture()
 	//Deallocate
 	free();
 }
-
+/*
 bool AKTexture::loadFromFile( std::string path )
 {
 	//Get rid of preexisting texture
@@ -54,7 +57,7 @@ bool AKTexture::loadFromFile( std::string path )
 	mTexture = newTexture;
 	return mTexture != NULL;
 }
-
+*/
 #ifdef _SDL_TTF_H
 bool AKTexture::loadFromRenderedText( std::string textureText, SDL_Color textColor )
 {
@@ -121,7 +124,7 @@ void AKTexture::setAlpha( Uint8 alpha )
 	//Modulate texture alpha
 	SDL_SetTextureAlphaMod( mTexture, alpha );
 }
-
+/*
 void AKTexture::render( int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip )
 {
 	//Set rendering space and render to screen
@@ -137,7 +140,7 @@ void AKTexture::render( int x, int y, SDL_Rect* clip, double angle, SDL_Point* c
 	//Render to screen
 	SDL_RenderCopyEx( gRenderer, mTexture, clip, &renderQuad, angle, center, flip );
 }
-
+*/
 int AKTexture::getWidth()
 {
 	return mWidth;
