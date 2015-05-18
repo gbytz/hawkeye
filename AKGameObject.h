@@ -1,9 +1,11 @@
 #ifndef AKGAMEOBJECT_H
 #define AKGAMEOBJECT_H
 
+#include "AKTexture.h"
 
 class AKGameObject
 {
+    friend class AKGraphics;
     public:
         static unsigned int COUNT;
 
@@ -13,12 +15,11 @@ class AKGameObject
         unsigned int id;
         int x;
         int y;
-        int width;
-        int height;
 
     protected:
-    private:
+        AKTexture* sprite;
 
+    private:
 };
 
 #endif // AKGAMEOBJECT_H
