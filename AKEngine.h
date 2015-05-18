@@ -16,6 +16,8 @@ class AKEngine
         bool start();
         void stop();
 
+        AKWindow* window();
+
     protected:
     private:
         AKWindow* mWindow;

@@ -10,6 +10,10 @@ AKEngine::~AKEngine()
     //dtor
 }
 
+AKWindow* AKEngine::window(){
+    return mWindow;
+};
+
 bool AKEngine::start()
 {
 	//Initialization flag
