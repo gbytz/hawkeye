@@ -39,7 +39,7 @@ class AKWindow
 		//Window data
 		SDL_Window* mWindow;
 		SDL_Renderer* mRenderer;
-		int mWindowID;
+		unsigned int mWindowID;
         std::stringstream mCaption;
 
 		//Window dimensions
