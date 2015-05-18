@@ -19,7 +19,7 @@ AKWindow::AKWindow()
 bool AKWindow::init()
 {
 	//Create window
-	mWindow = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE );
+	mWindow = SDL_CreateWindow( "Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE );
 	if( mWindow != NULL )
 	{
 		mMouseFocus = true;
@@ -67,77 +67,80 @@ void AKWindow::handleEvent( SDL_Event& e )
 		{
 			//Window appeared
 			case SDL_WINDOWEVENT_SHOWN:
-			mShown = true;
-			break;
+                mShown = true;
+                break;
 
 			//Window disappeared
 			case SDL_WINDOWEVENT_HIDDEN:
-			mShown = false;
-			break;
+                mShown = false;
+                break;
 
 			//Get new dimensions and repaint
 			case SDL_WINDOWEVENT_SIZE_CHANGED:
-			mWidth = e.window.data1;
-			mHeight = e.window.data2;
-			SDL_RenderPresent( mRenderer );
-			break;
+                mWidth = e.window.data1;
+                mHeight = e.window.data2;
+                SDL_RenderPresent( mRenderer );
+                break;
 
 			//Repaint on expose
 			case SDL_WINDOWEVENT_EXPOSED:
-			SDL_RenderPresent( mRenderer );
-			break;
+                SDL_RenderPresent( mRenderer );
+                break;
 
 			//Mouse enter
 			case SDL_WINDOWEVENT_ENTER:
-			mMouseFocus = true;
-			updateCaption = true;
-			break;
+                mMouseFocus = true;
+                updateCaption = true;
+                break;
 
 			//Mouse exit
 			case SDL_WINDOWEVENT_LEAVE:
-			mMouseFocus = false;
-			updateCaption = true;
-			break;
+                mMouseFocus = false;
+                updateCaption = true;
+                break;
 
 			//Keyboard focus gained
 			case SDL_WINDOWEVENT_FOCUS_GAINED:
-			mKeyboardFocus = true;
-			updateCaption = true;
-			break;
+                mKeyboardFocus = true;
+                updateCaption = true;
+                break;
 
 			//Keyboard focus lost
 			case SDL_WINDOWEVENT_FOCUS_LOST:
-			mKeyboardFocus = false;
-			updateCaption = true;
-			break;
+                mKeyboardFocus = false;
+                updateCaption = true;
+                break;
 
 			//Window minimized
 			case SDL_WINDOWEVENT_MINIMIZED:
-            mMinimized = true;
-            break;
+                mMinimized = true;
+                break;
 
 			//Window maxized
 			case SDL_WINDOWEVENT_MAXIMIZED:
-			mMinimized = false;
-            break;
+                mMinimized = false;
+                break;
 
 			//Window restored
 			case SDL_WINDOWEVENT_RESTORED:
-			mMinimized = false;
-            break;
+                mMinimized = false;
+                break;
 
 			//Hide on close
 			case SDL_WINDOWEVENT_CLOSE:
-			SDL_HideWindow( mWindow );
-			break;
+                SDL_HideWindow( mWindow );
+                break;
 		}
 
 		//Update window caption with new data
 		if( updateCaption )
 		{
-			std::stringstream caption;
-			caption << "SDL Tutorial - ID: " << mWindowID << " MouseFocus:" << ( ( mMouseFocus ) ? "On" : "Off" ) << " KeyboardFocus:" << ( ( mKeyboardFocus ) ? "On" : "Off" );
-			SDL_SetWindowTitle( mWindow, caption.str().c_str() );
+            mCaption.str("");
+			mCaption << "Window ID: " << mWindowID;
+			mCaption << " MouseFocus:" << ( ( mMouseFocus ) ? "On" : "Off" );
+			mCaption << " KeyboardFocus:" << ( ( mKeyboardFocus ) ? "On" : "Off" );
+			mCaption << " Shown:" << ( ( mShown ) ? "Yes" : "No" );
+			SDL_SetWindowTitle( mWindow, mCaption.str().c_str() );
 		}
 	}
 }
@@ -154,17 +157,22 @@ void AKWindow::focus()
 	SDL_RaiseWindow( mWindow );
 }
 
-void AKWindow::render()
+void AKWindow::clear()
 {
 	if( !mMinimized )
 	{
 		//Clear screen
 		SDL_SetRenderDrawColor( mRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
 		SDL_RenderClear( mRenderer );
+	}
+}
 
+void AKWindow::update()
+{
+    if( !mMinimized ){
 		//Update screen
 		SDL_RenderPresent( mRenderer );
-	}
+    }
 }
 
 void AKWindow::free()
@@ -188,6 +196,10 @@ int AKWindow::getWidth()
 int AKWindow::getHeight()
 {
 	return mHeight;
+}
+
+SDL_Renderer* AKWindow::getRenderer(){
+    return mRenderer;
 }
 
 bool AKWindow::hasMouseFocus()

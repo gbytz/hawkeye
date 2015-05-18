@@ -14,24 +14,20 @@ class AKWindow
 		AKWindow();
         ~AKWindow();
 
-		//Creates window
-		bool init();
+		bool init(); //Creates window
 
-		//Handles window events
-		void handleEvent( SDL_Event& e );
+		void handleEvent( SDL_Event& e );   //Handles window events
+		void focus();   //Focuses on window
+		void clear();   // Clears the screen
+        void update();  //Shows windows contents
 
-		//Focuses on window
-		void focus();
-
-		//Shows windows contents
-		void render();
-
-		//Deallocates internals
-		void free();
+		void free(); //Deallocates internals
 
 		//Window dimensions
 		int getWidth();
 		int getHeight();
+
+        SDL_Renderer* getRenderer();
 
 		//Window focii
 		bool hasMouseFocus();
@@ -44,6 +40,7 @@ class AKWindow
 		SDL_Window* mWindow;
 		SDL_Renderer* mRenderer;
 		int mWindowID;
+        std::stringstream mCaption;
 
 		//Window dimensions
 		int mWidth;
