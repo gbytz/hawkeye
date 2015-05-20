@@ -3,14 +3,17 @@
 
 #include <SDL2/SDL.h>
 
-class AKViewport
+class AKViewport : public SDL_Rect
 {
     public:
-        AKViewport(int width, int height);
-        virtual ~AKViewport();
+        AKViewport(int width, int height, int positionX, int positionY);
+        ~AKViewport();
+
+        void setBackgroundColor(SDL_Color color);
+        SDL_Color getBackgroundColor();
     protected:
     private:
-        SDL_Rect view;
+        SDL_Color mBackgroundColor;
 };
 
 #endif // AKVIEWPORT_H

@@ -1,9 +1,12 @@
 #include "AKViewport.h"
 
-AKViewport::AKViewport(int width, int height)
+AKViewport::AKViewport(int width, int height, int positionX, int positionY)
 {
-    view.w = width;
-    view.h = height;
+	w = width;
+	h = height;
+	x = positionX;
+	y = positionY;
+	mBackgroundColor = {0, 0, 0, 0};
 }
 
 AKViewport::~AKViewport()
