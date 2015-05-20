@@ -9,6 +9,7 @@ AKWindow::AKWindow()
 	mMouseFocus = false;
 	mKeyboardFocus = false;
 	mFullScreen = false;
+	mMinimized = false;
 	mShown = false;
 	mWindowID = -1;
 
