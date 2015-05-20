@@ -16,6 +16,7 @@ AKTexture::~AKTexture()
 
 void AKTexture::free()
 {
+	printf("AKTexture Destructor\n");
 	//Free texture if it exists
 	if( mTexture != NULL )
 	{

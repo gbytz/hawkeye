@@ -7,7 +7,12 @@ AKEngine::AKEngine()
 
 AKEngine::~AKEngine()
 {
-    //dtor
+    printf("AKEngine Destructor\n");
+    if( mWindow != NULL )
+    {
+        delete mWindow;
+        mWindow = NULL;
+    }
 }
 
 AKWindow* AKEngine::window(){

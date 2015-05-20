@@ -7,6 +7,7 @@ AKGraphics::AKGraphics(AKWindow* window)
 
 AKGraphics::~AKGraphics()
 {
+    printf("AKGraphics Destruct\n");
 }
 
 AKTexture* AKGraphics::loadFromFile( std::string imagePath )

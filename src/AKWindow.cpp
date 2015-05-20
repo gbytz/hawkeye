@@ -17,6 +17,12 @@ AKWindow::AKWindow()
 	mHeight = 0;
 }
 
+AKWindow::~AKWindow()
+{
+    printf("AKWindow Destructor\n");
+    free();
+}
+
 bool AKWindow::init()
 {
 	//Create window

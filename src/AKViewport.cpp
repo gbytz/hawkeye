@@ -8,4 +8,13 @@ AKViewport::AKViewport(int width, int height)
 
 AKViewport::~AKViewport()
 {
+	printf("AKViewport Destructor\n");
+}
+
+void AKViewport::setBackgroundColor(SDL_Color color){
+    mBackgroundColor = color;
+}
+
+SDL_Color AKViewport::getBackgroundColor(){
+    return mBackgroundColor;
 }
