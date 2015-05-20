@@ -6,7 +6,7 @@ AKViewport::AKViewport(int width, int height, int positionX, int positionY)
 	h = height;
 	x = positionX;
 	y = positionY;
-	mBackgroundColor = {0, 0, 0, 0};
+	mBackgroundColor = {0, 0, 0};
 }
 
 AKViewport::~AKViewport()

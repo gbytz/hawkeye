@@ -1,5 +1,7 @@
 #include "AKWindow.h"
 
+unsigned int AKWindow::VIEWPORTS = 0;
+
 AKWindow::AKWindow()
 {
 	//Initialize non-existant window
@@ -171,6 +173,16 @@ void AKWindow::clear()
 		//Clear screen
 		SDL_SetRenderDrawColor( mRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
 		SDL_RenderClear( mRenderer );
+		for(unsigned int index = 0; index < mViewports.size(); ++index)
+		{
+			SDL_Color backgroundColor = mViewports[index]->getBackgroundColor();
+			SDL_Rect background = {0, 0, mViewports[index]->w, mViewports[index]->h};
+
+			SDL_RenderSetViewport( mRenderer, mViewports[index] );
+			SDL_SetRenderDrawColor( mRenderer, backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
+
+			SDL_RenderFillRect( mRenderer, &background);
+		}
 	}
 }
 
@@ -184,6 +196,11 @@ void AKWindow::update()
 
 void AKWindow::free()
 {
+    if( mRenderer != NULL )
+    {
+        SDL_DestroyRenderer( mRenderer );
+    }
+
 	if( mWindow != NULL )
 	{
 		SDL_DestroyWindow( mWindow );
@@ -227,4 +244,16 @@ bool AKWindow::isMinimized()
 bool AKWindow::isShown()
 {
 	return mShown;
+}
+
+unsigned int AKWindow::addViewport(AKViewport* viewport){
+    unsigned int id = VIEWPORTS;
+    mViewports.push_back(viewport);
+    ++VIEWPORTS;
+    return id;
+}
+
+void AKWindow::removeViewport(unsigned int viewport_id)
+{
+	mViewports.erase(mViewports.begin() + viewport_id);
 }

@@ -40,6 +40,11 @@ class AKWindow
 		bool isMinimized();
 		bool isShown();
 
+		// Viewports methods
+		static unsigned int VIEWPORTS;
+		unsigned int addViewport(AKViewport* viewport);
+		void removeViewport(unsigned int viewport_id);
+
 	private:
 		//Window data
 		SDL_Window* mWindow;
@@ -57,6 +62,9 @@ class AKWindow
 		bool mFullScreen;
 		bool mMinimized;
 		bool mShown;
+
+		//Window viewports
+		std::vector<AKViewport*> mViewports;
 };
 
 
