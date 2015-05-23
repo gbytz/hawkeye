@@ -11,7 +11,8 @@ class AKGraphics;
 class AKGameObject
 {
     public:
-        static unsigned int COUNT;
+        // Class methods
+        unsigned int count();
 
         AKGameObject();
         virtual ~AKGameObject();
@@ -28,6 +29,7 @@ class AKGameObject
         AKGraphics* mGraphics;
 
     private:
+        static unsigned int COUNT;
 };
 
 #endif // AKGAMEOBJECT_H

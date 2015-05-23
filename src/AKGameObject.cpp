@@ -3,6 +3,11 @@
 
 unsigned int AKGameObject::COUNT = 0;
 
+unsigned int AKGameObject::count()
+{
+	return COUNT;
+}
+
 AKGameObject::AKGameObject()
 {
     id = COUNT;
