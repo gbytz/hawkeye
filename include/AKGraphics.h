@@ -1,13 +1,18 @@
 #ifndef AKGRAPHICS_H
 #define AKGRAPHICS_H
 
+// STL includes
+#include <string>
+
+// External libs
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 
-#include "AKWindow.h"
-#include "AKTexture.h"
-#include "AKGameObject.h"
+// Forward declarations
+class AKWindow;
+class AKTexture;
+
 
 class AKGraphics
 {

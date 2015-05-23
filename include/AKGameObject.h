@@ -1,7 +1,12 @@
 #ifndef AKGAMEOBJECT_H
 #define AKGAMEOBJECT_H
 
-#include "AKTexture.h"
+// STL includes
+#include <ostream>
+
+// Forward declarations
+class AKGraphics;
+
 
 class AKGameObject
 {

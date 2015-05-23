@@ -1,7 +1,11 @@
+// External libs
+#include <SDL2/SDL.h>
+
+// My libs
 #include "AKEngine.h"
+#include "AKWindow.h"
 #include "AKGraphics.h"
 #include "AKViewport.h"
-#include <SDL2/SDL.h>
 
 int main( int argc, char* args[] )
 {

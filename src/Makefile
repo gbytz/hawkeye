@@ -7,10 +7,10 @@ LDIR =../lib
 
 LIBS=-lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
 
-_DEPS = AKEngine.h AKWindow.h AKGraphics.h  AKTexture.h  AKViewport.h
+_DEPS = AKEngine.h AKWindow.h AKGraphics.h  AKTexture.h  AKViewport.h AKGameObject.h Player.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = main.o AKEngine.o AKWindow.o AKGraphics.o  AKTexture.o  AKViewport.o
+_OBJ = main.o AKEngine.o AKWindow.o AKGraphics.o  AKTexture.o  AKViewport.o AKGameObject.o Player.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 BIN=hawkeye

@@ -1,4 +1,5 @@
 #include "AKGameObject.h"
+#include "AKGraphics.h"
 
 unsigned int AKGameObject::COUNT = 0;
 

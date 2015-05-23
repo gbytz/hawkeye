@@ -1,12 +1,15 @@
 #ifndef AKWINDOW_H
 #define AKWINDOW_H
 
+// STL includes
 #include <sstream>
 #include <vector>
 
+// External libs
 #include <SDL2/SDL.h>
 
-#include "AKViewport.h"
+// Forward declarations
+class AKViewport;
 
 
 const int SCREEN_WIDTH = 640;

@@ -1,7 +1,15 @@
 #ifndef AKVIEWPORT_H
 #define AKVIEWPORT_H
 
+// STL includes
+#include <vector>
+
+// External libs
 #include <SDL2/SDL.h>
+
+// Forward declarations
+class AKGameObject;
+
 
 class AKViewport : public SDL_Rect
 {

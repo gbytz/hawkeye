@@ -1,4 +1,7 @@
 #include "AKGraphics.h"
+#include "AKWindow.h"
+#include "AKTexture.h"
+
 
 AKGraphics::AKGraphics(AKWindow* window)
 {
