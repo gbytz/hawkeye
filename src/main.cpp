@@ -23,11 +23,14 @@ int main( int argc, char* args[] )
 
             SDL_Color red = { 0xFF, 0x00, 0x00 };
 
-            AKViewport view1 = AKViewport(400, 300, 0, 0);
-            view1.setBackgroundColor(red);
-            main_window->addViewport(&view1);
+            AKViewport view = AKViewport(400, 300, 0, 0);
+            view.setBackgroundColor(red);
+            main_window->addViewport(&view);
 
             Player player = Player(0, 0);
+            player.SetGraphicsComp(&graphics);
+
+            view.addObject(&player);
 
             while( !quit )
             {
