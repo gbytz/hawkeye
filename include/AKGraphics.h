@@ -23,7 +23,6 @@ class AKGraphics
         AKTexture* loadFromFile( std::string path );
         AKTexture* loadFromRenderedText( std::string textureText, std::string fontPath, int fontSize, SDL_Color textColor );
 
-        void renderObject(const AKGameObject& object);
 		//Renders texture at given point
 		void render( AKTexture* texture, int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE );
 

@@ -79,10 +79,6 @@ AKTexture* AKGraphics::loadFromRenderedText( std::string textureText, std::strin
 	return finalTexture;
 }
 
-void AKGraphics::renderObject(const AKGameObject& object){
-    render(object.sprite, object.x, object.y);
-}
-
 void AKGraphics::render(AKTexture* texture, int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip )
 {
 	//Set rendering space and render to screen
