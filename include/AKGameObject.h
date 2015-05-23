@@ -14,10 +14,12 @@ class AKGameObject
         // Class methods
         unsigned int count();
 
+        // Instance methods
         AKGameObject();
         virtual ~AKGameObject();
         virtual void Draw() = 0;
 
+        // Members
         unsigned int id;
         int x;
         int y;

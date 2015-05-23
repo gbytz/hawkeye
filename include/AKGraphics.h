@@ -17,6 +17,7 @@ class AKTexture;
 class AKGraphics
 {
     public:
+        // Instance methods
         AKGraphics( AKWindow* window );
         ~AKGraphics();
 

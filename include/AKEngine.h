@@ -14,6 +14,7 @@ class AKWindow;
 class AKEngine
 {
     public:
+        // Instance methods
         AKEngine();
         ~AKEngine();
 
