@@ -21,6 +21,10 @@ AKGameObject::~AKGameObject()
     printf("AKGameObject Destructor\n");
 }
 
+void AKGameObject::SetGraphicsComp(AKGraphics* graphics_comp){
+    mGraphics = graphics_comp;
+}
+
 std::ostream& operator<<(std::ostream& os, const AKGameObject& obj)
 {
     os << "id: " << obj.id << std::endl;

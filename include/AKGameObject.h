@@ -19,6 +19,8 @@ class AKGameObject
         virtual ~AKGameObject();
         virtual void Draw() = 0;
 
+        void SetGraphicsComp(AKGraphics* graphics_comp);
+
         // Members
         unsigned int id;
         int x;
