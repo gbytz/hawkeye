@@ -175,23 +175,38 @@ void AKWindow::clear()
         //Clear screen
         SDL_SetRenderDrawColor( mRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
         SDL_RenderClear( mRenderer );
-        for(unsigned int index = 0; index < mViewports.size(); ++index)
+
+        SDL_Rect prevViewport;
+        SDL_RenderGetViewport( mRenderer, &prevViewport );
+
+        for (std::vector<AKViewport*>::iterator it = mViewports.begin(); it != mViewports.end(); ++it)
         {
-            SDL_Color backgroundColor = mViewports[index]->getBackgroundColor();
-            SDL_Rect background = {0, 0, mViewports[index]->w, mViewports[index]->h};
+            SDL_Color backgroundColor = (*it)->getBackgroundColor();
+            SDL_Rect backgroundRect = { 0, 0, (*it)->w, (*it)->h };
 
-            SDL_RenderSetViewport( mRenderer, mViewports[index] );
-            SDL_SetRenderDrawColor( mRenderer, backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
+            SDL_RenderSetViewport( mRenderer, (*it) );
+            SDL_SetRenderDrawColor( mRenderer, backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a );
 
-            SDL_RenderFillRect( mRenderer, &background);
+            SDL_RenderFillRect( mRenderer, &backgroundRect );
+        }
+
+        SDL_RenderSetViewport( mRenderer, &prevViewport );
+    }
+}
+
+void AKWindow::render()
+{
+    if( !mMinimized ){
+        for (std::vector<AKViewport*>::iterator it = mViewports.begin(); it != mViewports.end(); ++it)
+        {
+            (*it)->Render();
         }
     }
 }
 
-void AKWindow::update()
+void AKWindow::present()
 {
     if( !mMinimized ){
-        //Update screen
         SDL_RenderPresent( mRenderer );
     }
 }

@@ -22,9 +22,10 @@ class AKWindow
         bool init(); //Creates window
 
         void handleEvent( SDL_Event& e );   //Handles window events
-        void focus();   //Focuses on window
+        void focus();   // Focuses on window
         void clear();   // Clears the screen
-        void update();  //Shows windows contents
+        void render();  // Updates window contents
+        void present(); // Shows window contents
 
         void free(); //Deallocates internals
 
