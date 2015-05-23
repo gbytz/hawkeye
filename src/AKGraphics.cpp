@@ -102,7 +102,7 @@ void AKGraphics::DrawRectangle(int x, int y, int width, int height, SDL_Color co
 
     SDL_Rect rect = { x, y, width, height };
     SDL_SetRenderDrawColor( mRenderer, color.r, color.g, color.b, color.a );
-    SDL_RenderDrawRect( mRenderer, &rect );
+    SDL_RenderFillRect( mRenderer, &rect );
 
     SDL_SetRenderDrawColor( mRenderer, prevColor.r, prevColor.g, prevColor.b, prevColor.a);
 }
