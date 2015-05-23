@@ -94,3 +94,15 @@ void AKGraphics::render(AKTexture* texture, int x, int y, SDL_Rect* clip, double
     //Render to screen
     SDL_RenderCopyEx( mRenderer, texture->getTexture(), clip, &renderQuad, angle, center, flip );
 }
+
+void AKGraphics::DrawRectangle(int x, int y, int width, int height, SDL_Color color){
+
+    SDL_Color prevColor;
+    SDL_GetRenderDrawColor( mRenderer, &prevColor.r, &prevColor.g, &prevColor.b, &prevColor.a);
+
+    SDL_Rect rect = { x, y, width, height };
+    SDL_SetRenderDrawColor( mRenderer, color.r, color.g, color.b, color.a );
+    SDL_RenderDrawRect( mRenderer, &rect );
+
+    SDL_SetRenderDrawColor( mRenderer, prevColor.r, prevColor.g, prevColor.b, prevColor.a);
+}
