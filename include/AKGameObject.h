@@ -10,19 +10,19 @@ class AKGraphics;
 
 class AKGameObject
 {
-    friend class AKGraphics;
     public:
         static unsigned int COUNT;
 
         AKGameObject();
         virtual ~AKGameObject();
+        virtual void Draw() = 0;
 
         unsigned int id;
         int x;
         int y;
 
     protected:
-        AKTexture* sprite;
+        AKGraphics* mGraphics;
 
     private:
 };
