@@ -41,9 +41,9 @@ class AKWindow
 		bool isShown();
 
 		// Viewports methods
-		static unsigned int VIEWPORTS;
+		static unsigned int VIEWPORT_HANDLERS;
 		unsigned int addViewport(AKViewport* viewport);
-		void removeViewport(unsigned int viewport_id);
+		void removeViewport(unsigned int viewport_handle);
 
 	private:
 		static const int SCREEN_WIDTH = 640;

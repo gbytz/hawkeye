@@ -1,7 +1,8 @@
 #include "AKWindow.h"
 #include "AKViewport.h"
 
-unsigned int AKWindow::VIEWPORTS = 0;
+
+unsigned int AKWindow::VIEWPORT_HANDLERS = 0;
 
 AKWindow::AKWindow()
 {
@@ -248,13 +249,13 @@ bool AKWindow::isShown()
 }
 
 unsigned int AKWindow::addViewport(AKViewport* viewport){
-    unsigned int id = VIEWPORTS;
+    unsigned int handle = VIEWPORT_HANDLERS;
     mViewports.push_back(viewport);
-    ++VIEWPORTS;
-    return id;
+    ++VIEWPORT_HANDLERS;
+    return handle;
 }
 
-void AKWindow::removeViewport(unsigned int viewport_id)
+void AKWindow::removeViewport(unsigned int viewport_handle)
 {
-	mViewports.erase(mViewports.begin() + viewport_id);
+	mViewports.erase(mViewports.begin() + viewport_handle);
 }
