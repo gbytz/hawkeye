@@ -13,4 +13,13 @@ AKGameObject::AKGameObject()
 
 AKGameObject::~AKGameObject()
 {
+	printf("AKGameObject Destructor\n");
+}
+
+std::ostream& operator<<(std::ostream& os, const AKGameObject& obj)
+{
+    os << "id: " << obj.id << std::endl;
+    os << "x: " << obj.x << std::endl;
+    os << "y: " << obj.y << std::endl;
+    return os;
 }

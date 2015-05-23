@@ -21,6 +21,9 @@ class AKGameObject
         int x;
         int y;
 
+        // Friend methods
+        friend std::ostream& operator<<(std::ostream& os, const AKGameObject& obj);
+
     protected:
         AKGraphics* mGraphics;
 
