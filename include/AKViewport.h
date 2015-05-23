@@ -23,10 +23,20 @@ class AKViewport : public SDL_Rect
 
         void setBackgroundColor(SDL_Color color);
         SDL_Color getBackgroundColor();
+
+
+        static unsigned int OBJECT_HANDLERS;
+        unsigned int addObject(AKGameObject* object_pointer);
+        void removeObject(unsigned int object_handle);
+
+        // Members
+        unsigned int id;
+
     protected:
     private:
         static unsigned int COUNT;
         SDL_Color mBackgroundColor;
+        std::vector<AKGameObject*> mObjects;
 };
 
 #endif // AKVIEWPORT_H

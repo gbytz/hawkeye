@@ -30,3 +30,14 @@ void AKViewport::setBackgroundColor(SDL_Color color){
 SDL_Color AKViewport::getBackgroundColor(){
     return mBackgroundColor;
 }
+
+unsigned int AKViewport::addObject(AKGameObject* object_pointer){
+	unsigned int handle = OBJECT_HANDLERS;
+	mObjects.push_back(object_pointer);
+	++OBJECT_HANDLERS;
+	return handle;
+}
+
+void AKViewport::removeObject(unsigned int object_id){
+	mObjects.erase(mObjects.begin() + object_id);
+}
