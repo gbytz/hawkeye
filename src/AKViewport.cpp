@@ -1,4 +1,5 @@
 #include "AKViewport.h"
+#include "AKGameObject.h"
 
 unsigned int AKViewport::COUNT = 0;
 unsigned int AKViewport::OBJECT_HANDLERS = 0;
@@ -21,6 +22,13 @@ AKViewport::AKViewport(int width, int height, int positionX, int positionY)
 AKViewport::~AKViewport()
 {
     printf("AKViewport Destructor\n");
+}
+
+void AKViewport::Render(){
+	for (std::vector<AKGameObject*>::iterator it = mObjects.begin(); it != mObjects.end(); ++it)
+	{
+		(*it)->Draw();
+	}
 }
 
 void AKViewport::setBackgroundColor(SDL_Color color){
