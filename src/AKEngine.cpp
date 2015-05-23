@@ -22,31 +22,31 @@ AKWindow* AKEngine::window(){
 
 bool AKEngine::start()
 {
-	//Initialization flag
-	bool success = true;
+    //Initialization flag
+    bool success = true;
 
-	//Initialize SDL
-	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
-	{
-		printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
-		success = false;
-	}
-	else
-	{
-		//Set texture filtering to linear
-		if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) )
-		{
-			printf( "Warning: Linear texture filtering not enabled!" );
-		}
+    //Initialize SDL
+    if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
+    {
+        printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
+        success = false;
+    }
+    else
+    {
+        //Set texture filtering to linear
+        if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) )
+        {
+            printf( "Warning: Linear texture filtering not enabled!" );
+        }
 
-		mWindow = new AKWindow();
-		if( !mWindow->init() )
-		{
-			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
-			success = false;
-		}
-		else
-		{
+        mWindow = new AKWindow();
+        if( !mWindow->init() )
+        {
+            printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
+            success = false;
+        }
+        else
+        {
             //Initialize PNG loading
             int imgFlags = IMG_INIT_PNG;
             if( !( IMG_Init( imgFlags ) & imgFlags ) )
@@ -68,41 +68,41 @@ bool AKEngine::start()
                 printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
                 success = false;
             }
-		}
-	}
+        }
+    }
 
-	return success;
+    return success;
 }
 
 void AKEngine::stop()
 {
 /*
-	//Free loaded images
-	gPromptTexture.free();
+    //Free loaded images
+    gPromptTexture.free();
 
-	//Free the sound effects
-	Mix_FreeChunk( gScratch );
-	Mix_FreeChunk( gHigh );
-	Mix_FreeChunk( gMedium );
-	Mix_FreeChunk( gLow );
-	gScratch = NULL;
-	gHigh = NULL;
-	gMedium = NULL;
-	gLow = NULL;
+    //Free the sound effects
+    Mix_FreeChunk( gScratch );
+    Mix_FreeChunk( gHigh );
+    Mix_FreeChunk( gMedium );
+    Mix_FreeChunk( gLow );
+    gScratch = NULL;
+    gHigh = NULL;
+    gMedium = NULL;
+    gLow = NULL;
 
-	//Free the music
-	Mix_FreeMusic( gMusic );
-	gMusic = NULL;
+    //Free the music
+    Mix_FreeMusic( gMusic );
+    gMusic = NULL;
 
-	//Destroy window
-	SDL_DestroyRenderer( gRenderer );
-	SDL_DestroyWindow( gWindow );
-	gWindow = NULL;
-	gRenderer = NULL;
+    //Destroy window
+    SDL_DestroyRenderer( gRenderer );
+    SDL_DestroyWindow( gWindow );
+    gWindow = NULL;
+    gRenderer = NULL;
 */
-	//Quit SDL subsystems
-	Mix_Quit();
-	TTF_Quit();
-	IMG_Quit();
-	SDL_Quit();
+    //Quit SDL subsystems
+    Mix_Quit();
+    TTF_Quit();
+    IMG_Quit();
+    SDL_Quit();
 }

@@ -5,7 +5,7 @@ unsigned int AKGameObject::COUNT = 0;
 
 unsigned int AKGameObject::count()
 {
-	return COUNT;
+    return COUNT;
 }
 
 AKGameObject::AKGameObject()
@@ -18,7 +18,7 @@ AKGameObject::AKGameObject()
 
 AKGameObject::~AKGameObject()
 {
-	printf("AKGameObject Destructor\n");
+    printf("AKGameObject Destructor\n");
 }
 
 std::ostream& operator<<(std::ostream& os, const AKGameObject& obj)
