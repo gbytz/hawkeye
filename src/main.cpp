@@ -7,6 +7,7 @@
 #include "AKGraphics.h"
 #include "AKViewport.h"
 #include "Player.h"
+#include "AKJoystick.h"
 
 int main( int argc, char* args[] )
 {
@@ -30,6 +31,9 @@ int main( int argc, char* args[] )
 
             view.addObject(&player);
 
+            AKJoystick::Init();
+            SDL_Joystick* joystick = AKJoystick::GetJoystick();
+
             while( !quit )
             {
                 //Handle events on queue
@@ -46,6 +50,7 @@ int main( int argc, char* args[] )
                 main_window->render();
                 main_window->present();
             }
+            AKJoystick::Quit();
     }
     engine.stop();
     return 0;
