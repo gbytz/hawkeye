@@ -6,8 +6,8 @@
 #include "AKWindow.h"
 #include "AKGraphics.h"
 #include "AKViewport.h"
+#include "AKKeyboard.h"
 #include "Player.h"
-#include "AKJoystick.h"
 
 int main( int argc, char* args[] )
 {
@@ -22,17 +22,17 @@ int main( int argc, char* args[] )
             AKWindow* main_window = engine.window();
             AKGraphics graphics = AKGraphics(main_window);
 
+            AKKeyboard keyboard = AKKeyboard();
+
             AKViewport view = AKViewport(640, 480, 0, 0);
             view.setBackgroundColor({ 0xFF, 0xFF, 0xFF });
             main_window->addViewport(&view);
 
             Player player = Player(0, 0);
             player.SetGraphicsComp(&graphics);
+            player.SetKeyboardComp(&keyboard);
 
             view.addObject(&player);
-
-            AKJoystick::Init();
-            SDL_Joystick* joystick = AKJoystick::GetJoystick();
 
             while( !quit )
             {
@@ -46,11 +46,12 @@ int main( int argc, char* args[] )
                     }
                     main_window->handleEvent(event);
                 }
+                keyboard.Update();
                 main_window->clear();
+                main_window->update();
                 main_window->render();
                 main_window->present();
             }
-            AKJoystick::Quit();
     }
     engine.stop();
     return 0;

@@ -8,6 +8,8 @@ class Player : public AKGameObject
     public:
         Player(int x, int y);
         ~Player();
+
+        void Update();
         void Draw();
 
     protected:

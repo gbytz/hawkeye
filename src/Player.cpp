@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "AKGraphics.h"
+#include "AKKeyboard.h"
 
 Player::Player(int x, int y) : AKGameObject()
 {
@@ -9,6 +10,14 @@ Player::Player(int x, int y) : AKGameObject()
 
 Player::~Player()
 {
+}
+
+void Player::Update()
+{
+	if(mKeyboard->UpPressed()) y -= 10;
+	if(mKeyboard->DownPressed()) y += 10;
+	if(mKeyboard->LeftPressed()) x -= 10;
+	if(mKeyboard->RightPressed()) x += 10;
 }
 
 void Player::Draw(){
