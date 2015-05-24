@@ -18,6 +18,7 @@ class AKGameObject
         // Instance methods
         AKGameObject();
         virtual ~AKGameObject();
+        virtual void Update() = 0;
         virtual void Draw() = 0;
 
         void SetGraphicsComp(AKGraphics* graphics_comp);
