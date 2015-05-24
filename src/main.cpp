@@ -21,10 +21,8 @@ int main( int argc, char* args[] )
             AKWindow* main_window = engine.window();
             AKGraphics graphics = AKGraphics(main_window);
 
-            SDL_Color red = { 0xFF, 0x00, 0x00 };
-
-            AKViewport view = AKViewport(400, 300, 0, 0);
-            view.setBackgroundColor(red);
+            AKViewport view = AKViewport(640, 480, 0, 0);
+            view.setBackgroundColor({ 0xFF, 0xFF, 0xFF });
             main_window->addViewport(&view);
 
             Player player = Player(0, 0);
@@ -45,7 +43,8 @@ int main( int argc, char* args[] )
                     main_window->handleEvent(event);
                 }
                 main_window->clear();
-                main_window->update();
+                main_window->render();
+                main_window->present();
             }
     }
     engine.stop();
