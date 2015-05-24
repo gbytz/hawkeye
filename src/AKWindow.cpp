@@ -194,6 +194,16 @@ void AKWindow::clear()
     }
 }
 
+void AKWindow::update()
+{
+    if( !mMinimized ){
+        for (std::vector<AKViewport*>::iterator it = mViewports.begin(); it != mViewports.end(); ++it)
+        {
+            (*it)->Update();
+        }
+    }
+}
+
 void AKWindow::render()
 {
     if( !mMinimized ){

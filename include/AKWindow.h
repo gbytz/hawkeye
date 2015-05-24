@@ -24,7 +24,8 @@ class AKWindow
         void handleEvent( SDL_Event& e );   //Handles window events
         void focus();   // Focuses on window
         void clear();   // Clears the screen
-        void render();  // Updates window contents
+        void update();	// Update window viewports
+        void render();  // Render window contents
         void present(); // Shows window contents
 
         void free(); //Deallocates internals
