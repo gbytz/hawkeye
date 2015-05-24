@@ -6,6 +6,7 @@
 
 // Forward declarations
 class AKGraphics;
+class AKKeyboard;
 
 
 class AKGameObject
@@ -20,6 +21,7 @@ class AKGameObject
         virtual void Draw() = 0;
 
         void SetGraphicsComp(AKGraphics* graphics_comp);
+        void SetKeyboardComp(AKKeyboard* keyboard_comp);
 
         // Members
         unsigned int id;
@@ -31,6 +33,7 @@ class AKGameObject
 
     protected:
         AKGraphics* mGraphics;
+        AKKeyboard* mKeyboard;
 
     private:
         static unsigned int COUNT;
