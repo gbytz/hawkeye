@@ -24,28 +24,41 @@ AKViewport::~AKViewport()
     printf("AKViewport Destructor\n");
 }
 
-void AKViewport::Render(){
+void AKViewport::Update()
+{
+	for (std::vector<AKGameObject*>::iterator it = mObjects.begin(); it != mObjects.end(); ++it)
+	{
+		(*it)->Update();
+	}
+}
+
+void AKViewport::Render()
+{
 	for (std::vector<AKGameObject*>::iterator it = mObjects.begin(); it != mObjects.end(); ++it)
 	{
 		(*it)->Draw();
 	}
 }
 
-void AKViewport::setBackgroundColor(SDL_Color color){
+void AKViewport::setBackgroundColor(SDL_Color color)
+{
     mBackgroundColor = color;
 }
 
-SDL_Color AKViewport::getBackgroundColor(){
+SDL_Color AKViewport::getBackgroundColor()
+{
     return mBackgroundColor;
 }
 
-unsigned int AKViewport::addObject(AKGameObject* object_pointer){
+unsigned int AKViewport::addObject(AKGameObject* object_pointer)
+{
     unsigned int handle = OBJECT_HANDLERS;
     mObjects.push_back(object_pointer);
     ++OBJECT_HANDLERS;
     return handle;
 }
 
-void AKViewport::removeObject(unsigned int object_id){
+void AKViewport::removeObject(unsigned int object_id)
+{
     mObjects.erase(mObjects.begin() + object_id);
 }

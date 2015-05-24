@@ -21,6 +21,7 @@ class AKViewport : public SDL_Rect
         AKViewport(int width, int height, int positionX, int positionY);
         ~AKViewport();
 
+        void Update();
         void Render();
 
         void setBackgroundColor(SDL_Color color);
