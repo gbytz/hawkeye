@@ -191,10 +191,13 @@ void AKWindow::update()
 void AKWindow::render()
 {
     if( !mMinimized ){
+        SDL_Rect prevViewport;
+        SDL_RenderGetViewport( mRenderer, &prevViewport );
         for (std::vector<AKViewport*>::iterator it = mViewports.begin(); it != mViewports.end(); ++it)
         {
             (*it)->Render();
         }
+        SDL_RenderSetViewport( mRenderer, &prevViewport );
     }
 }
 
