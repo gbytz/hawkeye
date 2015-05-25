@@ -43,7 +43,6 @@ class AKWindow
         bool isShown();
 
         // Viewports methods
-        static unsigned int VIEWPORT_HANDLERS;
         unsigned int addViewport(AKViewport* viewport);
         void removeViewport(unsigned int viewport_handle);
 

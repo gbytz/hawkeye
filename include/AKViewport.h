@@ -34,7 +34,6 @@ class AKViewport : public SDL_Rect
 
         AKCamera* getCamera();
 
-        static unsigned int OBJECT_HANDLERS;
         unsigned int addObject(AKGameObject* object_pointer);
         void removeObject(unsigned int object_handle);
 

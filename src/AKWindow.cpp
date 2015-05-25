@@ -2,8 +2,6 @@
 #include "AKViewport.h"
 
 
-unsigned int AKWindow::VIEWPORT_HANDLERS = 0;
-
 AKWindow::AKWindow()
 {
     //Initialize non-existant window
@@ -261,9 +259,8 @@ bool AKWindow::isShown()
 }
 
 unsigned int AKWindow::addViewport(AKViewport* viewport){
-    unsigned int handle = VIEWPORT_HANDLERS;
+    unsigned int handle = mViewports.size();
     mViewports.push_back(viewport);
-    ++VIEWPORT_HANDLERS;
     return handle;
 }
 

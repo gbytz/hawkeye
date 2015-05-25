@@ -3,7 +3,6 @@
 #include "AKGameObject.h"
 
 unsigned int AKViewport::COUNT = 0;
-unsigned int AKViewport::OBJECT_HANDLERS = 0;
 
 unsigned int AKViewport::count(){
     return COUNT;
@@ -68,9 +67,8 @@ AKCamera* AKViewport::getCamera()
 
 unsigned int AKViewport::addObject(AKGameObject* object_pointer)
 {
-    unsigned int handle = OBJECT_HANDLERS;
+    unsigned int handle = mObjects.size();
     mObjects.push_back(object_pointer);
-    ++OBJECT_HANDLERS;
     return handle;
 }
 
