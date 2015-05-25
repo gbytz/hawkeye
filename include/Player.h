@@ -10,7 +10,7 @@ class Player : public AKGameObject
         ~Player();
 
         void Update();
-        void Draw();
+        void Draw(AKCamera* camera);
 
     protected:
     private:

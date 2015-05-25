@@ -24,8 +24,12 @@ int main( int argc, char* args[] )
 
             AKKeyboard keyboard = AKKeyboard();
 
-            AKViewport view = AKViewport(640, 480, 0, 0);
-            view.setBackgroundColor({ 0xFF, 0xFF, 0xFF });
+            AKTexture* bgTexture = graphics.loadFromFile("../graphics/test.png");
+            AKViewport view = AKViewport(0, 0, 640, 480);
+            view.setBackgroundTexture(bgTexture);
+
+            AKCamera* camera = view.getCamera();
+
             main_window->addViewport(&view);
 
             Player player = Player(0, 0);
@@ -49,6 +53,9 @@ int main( int argc, char* args[] )
                 keyboard.Update();
                 main_window->clear();
                 main_window->update();
+                camera->x = (player.x + 25) - 640 / 2;
+                if( camera->x < 0 ) camera->x = 0;
+                if( camera->x > 2560 - camera->w ) camera->x = 2560 - camera->w;
                 main_window->render();
                 main_window->present();
             }
