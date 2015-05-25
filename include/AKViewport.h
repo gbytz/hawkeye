@@ -13,7 +13,7 @@ class AKGameObject;
 
 typedef SDL_Rect AKCamera;
 
-class AKViewport : public SDL_Rect
+class AKViewport
 {
     public:
         // Class methods
