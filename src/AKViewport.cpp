@@ -9,7 +9,7 @@ unsigned int AKViewport::count(){
     return COUNT;
 }
 
-AKViewport::AKViewport(int width, int height, int positionX, int positionY)
+AKViewport::AKViewport(int x, int y, int width, int height)
 {
     id = COUNT;
     COUNT++;

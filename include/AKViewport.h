@@ -20,7 +20,7 @@ class AKViewport : public SDL_Rect
         unsigned int count();
 
         // Instance methods
-        AKViewport(int width, int height, int positionX, int positionY);
+        AKViewport(int x, int y, int width, int height);
         ~AKViewport();
 
         void Update();
