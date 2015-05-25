@@ -175,22 +175,6 @@ void AKWindow::clear()
         //Clear screen
         SDL_SetRenderDrawColor( mRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
         SDL_RenderClear( mRenderer );
-
-        SDL_Rect prevViewport;
-        SDL_RenderGetViewport( mRenderer, &prevViewport );
-
-        for (std::vector<AKViewport*>::iterator it = mViewports.begin(); it != mViewports.end(); ++it)
-        {
-            SDL_Color backgroundColor = (*it)->getBackgroundColor();
-            SDL_Rect backgroundRect = { 0, 0, (*it)->w, (*it)->h };
-
-            SDL_RenderSetViewport( mRenderer, (*it) );
-            SDL_SetRenderDrawColor( mRenderer, backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a );
-
-            SDL_RenderFillRect( mRenderer, &backgroundRect );
-        }
-
-        SDL_RenderSetViewport( mRenderer, &prevViewport );
     }
 }
 
