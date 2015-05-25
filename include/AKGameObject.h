@@ -4,9 +4,14 @@
 // STL includes
 #include <ostream>
 
+// External libs
+#include <SDL2/SDL.h>
+
 // Forward declarations
 class AKGraphics;
 class AKKeyboard;
+
+typedef SDL_Rect AKCamera;
 
 
 class AKGameObject
@@ -19,7 +24,7 @@ class AKGameObject
         AKGameObject();
         virtual ~AKGameObject();
         virtual void Update() = 0;
-        virtual void Draw() = 0;
+        virtual void Draw(AKCamera* camera) = 0;
 
         void SetGraphicsComp(AKGraphics* graphics_comp);
         void SetKeyboardComp(AKKeyboard* keyboard_comp);
@@ -29,6 +34,8 @@ class AKGameObject
         int x;
         int y;
 
+        int vX;
+        int vY;
         // Friend methods
         friend std::ostream& operator<<(std::ostream& os, const AKGameObject& obj);
 

@@ -37,7 +37,7 @@ void AKViewport::Render(SDL_Renderer* renderer)
     SDL_RenderCopy( renderer, mBackgroundTexture->getTexture(), &mCamera, NULL );
     for (std::vector<AKGameObject*>::iterator it = mObjects.begin(); it != mObjects.end(); ++it)
     {
-        (*it)->Draw();
+        (*it)->Draw( &mCamera );
     }
 }
 

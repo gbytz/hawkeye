@@ -14,6 +14,8 @@ AKGameObject::AKGameObject()
     COUNT++;
     x = 0;
     y = 0;
+    vX = 0;
+    vY = 0;
     mGraphics = NULL;
     mKeyboard = NULL;
 }
