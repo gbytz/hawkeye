@@ -8,8 +8,10 @@
 #include <SDL2/SDL.h>
 
 // Forward declarations
+class AKTexture;
 class AKGameObject;
 
+typedef SDL_Rect AKCamera;
 
 class AKViewport : public SDL_Rect
 {
@@ -22,11 +24,15 @@ class AKViewport : public SDL_Rect
         ~AKViewport();
 
         void Update();
-        void Render();
+        void Render(SDL_Renderer* renderer);
 
         void setBackgroundColor(SDL_Color color);
         SDL_Color getBackgroundColor();
 
+        void setBackgroundTexture(AKTexture* texture);
+        SDL_Texture* getBackgroundTexture();
+
+        AKCamera* getCamera();
 
         static unsigned int OBJECT_HANDLERS;
         unsigned int addObject(AKGameObject* object_pointer);
@@ -38,7 +44,12 @@ class AKViewport : public SDL_Rect
     protected:
     private:
         static unsigned int COUNT;
+
+        AKCamera mView;
         SDL_Color mBackgroundColor;
+        AKTexture* mBackgroundTexture;
+
+        AKCamera mCamera;
         std::vector<AKGameObject*> mObjects;
 };
 

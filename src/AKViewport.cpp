@@ -1,4 +1,5 @@
 #include "AKViewport.h"
+#include "AKTexture.h"
 #include "AKGameObject.h"
 
 unsigned int AKViewport::COUNT = 0;
@@ -12,10 +13,8 @@ AKViewport::AKViewport(int width, int height, int positionX, int positionY)
 {
     id = COUNT;
     COUNT++;
-    w = width;
-    h = height;
-    x = positionX;
-    y = positionY;
+    mView = { x, y, width, height };
+    mCamera = mView;
     mBackgroundColor = {0, 0, 0};
 }
 
@@ -26,18 +25,20 @@ AKViewport::~AKViewport()
 
 void AKViewport::Update()
 {
-	for (std::vector<AKGameObject*>::iterator it = mObjects.begin(); it != mObjects.end(); ++it)
-	{
-		(*it)->Update();
-	}
+    for (std::vector<AKGameObject*>::iterator it = mObjects.begin(); it != mObjects.end(); ++it)
+    {
+        (*it)->Update();
+    }
 }
 
-void AKViewport::Render()
+void AKViewport::Render(SDL_Renderer* renderer)
 {
-	for (std::vector<AKGameObject*>::iterator it = mObjects.begin(); it != mObjects.end(); ++it)
-	{
-		(*it)->Draw();
-	}
+    SDL_RenderSetViewport( renderer, &mView );
+    SDL_RenderCopy( renderer, mBackgroundTexture->getTexture(), &mCamera, NULL );
+    for (std::vector<AKGameObject*>::iterator it = mObjects.begin(); it != mObjects.end(); ++it)
+    {
+        (*it)->Draw();
+    }
 }
 
 void AKViewport::setBackgroundColor(SDL_Color color)
@@ -48,6 +49,21 @@ void AKViewport::setBackgroundColor(SDL_Color color)
 SDL_Color AKViewport::getBackgroundColor()
 {
     return mBackgroundColor;
+}
+
+void AKViewport::setBackgroundTexture(AKTexture* texture)
+{
+    mBackgroundTexture = texture;
+}
+
+SDL_Texture* AKViewport::getBackgroundTexture()
+{
+    return mBackgroundTexture->getTexture();
+}
+
+AKCamera* AKViewport::getCamera()
+{
+    return &mCamera;
 }
 
 unsigned int AKViewport::addObject(AKGameObject* object_pointer)

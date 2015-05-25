@@ -195,7 +195,7 @@ void AKWindow::render()
         SDL_RenderGetViewport( mRenderer, &prevViewport );
         for (std::vector<AKViewport*>::iterator it = mViewports.begin(); it != mViewports.end(); ++it)
         {
-            (*it)->Render();
+            (*it)->Render( mRenderer );
         }
         SDL_RenderSetViewport( mRenderer, &prevViewport );
     }
