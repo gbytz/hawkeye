@@ -47,8 +47,8 @@ class AKWindow
         void removeViewport(unsigned int viewport_handle);
 
     private:
-        static const int SCREEN_WIDTH = 640;
-        static const int SCREEN_HEIGHT = 480;
+        static const int SCREEN_WIDTH = 1280;
+        static const int SCREEN_HEIGHT = 720;
 
         //Window data
         SDL_Window* mWindow;
