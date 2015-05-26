@@ -7,6 +7,7 @@
 #include "AKGraphics.h"
 #include "AKViewport.h"
 #include "AKKeyboard.h"
+#include "AKTexture.h"
 #include "Player.h"
 
 int main( int argc, char* args[] )
@@ -22,19 +23,23 @@ int main( int argc, char* args[] )
             AKWindow* main_window = engine.window();
             AKGraphics graphics = AKGraphics(main_window);
 
-            AKKeyboard keyboard = AKKeyboard();
+            AKTexture* bgTexture = graphics.loadFromFile("../graphics/background.png");
+            AKTexture* arrow = graphics.loadFromFile("../graphics/arrow.png");
 
-            AKTexture* bgTexture = graphics.loadFromFile("../graphics/test.png");
-            AKViewport view = AKViewport(0, 0, 640, 480);
-            view.setBackgroundTexture(bgTexture);
+
+            AKViewport view = AKViewport( 0, 0, main_window->getWidth(), main_window->getHeight() );
+            view.setBackgroundTexture( bgTexture );
+            main_window->addViewport( &view );
 
             AKCamera* camera = view.getCamera();
+            camera->y = view.getBackgroundTexture()->getHeight() - camera->h;
 
-            main_window->addViewport(&view);
+            AKKeyboard keyboard = AKKeyboard();
 
-            Player player = Player(0, 0);
+            Player player = Player(5, view.getBackgroundTexture()->getHeight() - arrow->getHeight() - 5 );
             player.SetGraphicsComp(&graphics);
             player.SetKeyboardComp(&keyboard);
+            player.texture = arrow;
 
             view.addObject(&player);
 
@@ -53,9 +58,12 @@ int main( int argc, char* args[] )
                 keyboard.Update();
                 main_window->clear();
                 main_window->update();
-                camera->x = (player.x + 25) - 640 / 2;
+                camera->x = (player.x + 25) - bgTexture->getWidth() / 2;
+                camera->y = (player.y + 25) - bgTexture->getHeight() / 2;
                 if( camera->x < 0 ) camera->x = 0;
-                if( camera->x > 2560 - camera->w ) camera->x = 2560 - camera->w;
+                if( camera->x > bgTexture->getWidth() - camera->w ) camera->x = bgTexture->getWidth() - camera->w;
+                if( camera->y < 0 ) camera->y = 0;
+                if( camera->y > bgTexture->getHeight() - camera->w) camera->y = bgTexture->getHeight() - camera->h;
                 main_window->render();
                 main_window->present();
             }

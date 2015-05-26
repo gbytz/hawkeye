@@ -3,6 +3,8 @@
 
 #include "AKGameObject.h"
 
+class AKTexture;
+
 class Player : public AKGameObject
 {
     public:
@@ -12,8 +14,11 @@ class Player : public AKGameObject
         void Update();
         void Draw(AKCamera* camera);
 
+        AKTexture* texture;
+
     protected:
     private:
+        bool shot;
 };
 
 #endif // PLAYER_H

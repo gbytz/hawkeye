@@ -1,11 +1,17 @@
 #include "Player.h"
 #include "AKGraphics.h"
 #include "AKKeyboard.h"
+#include "AKTexture.h"
+
+#define PI 3.14159265
 
 Player::Player(int x, int y) : AKGameObject()
 {
     this->x = x;
     this->y = y;
+    texture = NULL;
+    shot = false;
+    angle = -45;
 }
 
 Player::~Player()
@@ -14,19 +20,20 @@ Player::~Player()
 
 void Player::Update()
 {
-    vY = (mKeyboard->UpPressed()) ? -10:0;
-    vY += (mKeyboard->DownPressed()) ? 10:0;
-    vX = (mKeyboard->LeftPressed()) ? -10:0;
-    vX += (mKeyboard->RightPressed()) ? 10:0;
+    if( mKeyboard->LeftPressed() ) angle--;
+    if( mKeyboard->RightPressed() ) angle++;
 
+    if( !shot && mKeyboard->SpaceBarPressed() ){
+        shot = true;
+        double f = 50;
+        vX = f * cos(angle * PI / 180.0);
+        vY = f * sin(angle * PI / 180.0);
+    }
     x += vX;
-    if( x < 0 || x + 50 > 2560) x -= vX;
-
     y += vY;
-    if( y < 0 || y + 50 > 480) y -= vY;
 }
 
 void Player::Draw(AKCamera* camera){
-    SDL_Color blue = { 0x00, 0x00, 0xFF, 0xFF };
-    mGraphics->DrawRectangle( x - camera->x, y - camera->y, 50, 50, blue );
+    SDL_Point point = { 0, texture->getHeight() / 2};
+    mGraphics->render( texture, x - camera->x, y - camera->y, NULL, angle, &point);
 }
