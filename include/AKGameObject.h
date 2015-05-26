@@ -36,6 +36,8 @@ class AKGameObject
 
         int vX;
         int vY;
+
+        double angle;
         // Friend methods
         friend std::ostream& operator<<(std::ostream& os, const AKGameObject& obj);
 

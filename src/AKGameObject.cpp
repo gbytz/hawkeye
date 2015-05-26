@@ -16,6 +16,7 @@ AKGameObject::AKGameObject()
     y = 0;
     vX = 0;
     vY = 0;
+    angle = 0;
     mGraphics = NULL;
     mKeyboard = NULL;
 }
