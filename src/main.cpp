@@ -58,12 +58,12 @@ int main( int argc, char* args[] )
                 keyboard.Update();
                 main_window->clear();
                 main_window->update();
-                camera->x = (player.x + 25) - bgTexture->getWidth() / 2;
-                camera->y = (player.y + 25) - bgTexture->getHeight() / 2;
+                camera->x = ( player.x + arrow->getWidth() / 2 ) - camera->w / 2;
+                camera->y = ( player.y + arrow->getHeight() / 2 ) - camera->h / 2;
                 if( camera->x < 0 ) camera->x = 0;
                 if( camera->x > bgTexture->getWidth() - camera->w ) camera->x = bgTexture->getWidth() - camera->w;
                 if( camera->y < 0 ) camera->y = 0;
-                if( camera->y > bgTexture->getHeight() - camera->w) camera->y = bgTexture->getHeight() - camera->h;
+                if( camera->y > bgTexture->getHeight() - camera->h ) camera->y = bgTexture->getHeight() - camera->h;
                 main_window->render();
                 main_window->present();
             }
