@@ -22,6 +22,7 @@ class AKKeyboard
         bool DownPressed();
         bool LeftPressed();
         bool RightPressed();
+        bool SpaceBarPressed();
         // Members
 
         // Friend methods
