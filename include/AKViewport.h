@@ -30,7 +30,7 @@ class AKViewport
         SDL_Color getBackgroundColor();
 
         void setBackgroundTexture(AKTexture* texture);
-        SDL_Texture* getBackgroundTexture();
+        AKTexture* getBackgroundTexture();
 
         AKCamera* getCamera();
 

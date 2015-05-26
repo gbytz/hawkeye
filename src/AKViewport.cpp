@@ -55,9 +55,9 @@ void AKViewport::setBackgroundTexture(AKTexture* texture)
     mBackgroundTexture = texture;
 }
 
-SDL_Texture* AKViewport::getBackgroundTexture()
+AKTexture* AKViewport::getBackgroundTexture()
 {
-    return mBackgroundTexture->getTexture();
+    return mBackgroundTexture;
 }
 
 AKCamera* AKViewport::getCamera()
