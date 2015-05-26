@@ -2,6 +2,7 @@
 #include "AKGraphics.h"
 #include "AKKeyboard.h"
 #include "AKTexture.h"
+#include "AKCamera.h"
 
 #define PI 3.14159265
 
@@ -9,7 +10,7 @@ Player::Player(int x, int y) : AKGameObject()
 {
     this->x = x;
     this->y = y;
-    texture = NULL;
+    mTexture = NULL;
     shot = false;
     angle = -45;
 }
@@ -34,6 +35,13 @@ void Player::Update()
 }
 
 void Player::Draw(AKCamera* camera){
-    SDL_Point point = { 0, texture->getHeight() / 2};
-    mGraphics->render( texture, x - camera->x, y - camera->y, NULL, angle, &point);
+    SDL_Point point = { 0, mTexture->getHeight() / 2};
+    mGraphics->render( mTexture, x - camera->x, y - camera->y, NULL, angle, &point);
+}
+
+void Player::setTexture(AKTexture* texture)
+{
+    mTexture = texture;
+    w = texture->getWidth();
+    h = texture->getHeight();
 }

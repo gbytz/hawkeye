@@ -7,11 +7,13 @@
 // External libs
 #include <SDL2/SDL.h>
 
+// Own libs
+#include "AKCamera.h"
+
 // Forward declarations
 class AKTexture;
 class AKGameObject;
 
-typedef SDL_Rect AKCamera;
 
 class AKViewport
 {

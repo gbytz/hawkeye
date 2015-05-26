@@ -31,17 +31,17 @@ int main( int argc, char* args[] )
             view.setBackgroundTexture( bgTexture );
             main_window->addViewport( &view );
 
-            AKCamera* camera = view.getCamera();
-            camera->y = view.getBackgroundTexture()->getHeight() - camera->h;
-
             AKKeyboard keyboard = AKKeyboard();
 
-            Player player = Player(5, view.getBackgroundTexture()->getHeight() - arrow->getHeight() - 5 );
-            player.SetGraphicsComp(&graphics);
-            player.SetKeyboardComp(&keyboard);
-            player.texture = arrow;
+            Player player = Player( 5, view.getBackgroundTexture()->getHeight() - arrow->getHeight() - 5 );
+            player.setGraphicsComp( &graphics );
+            player.setKeyboardComp( &keyboard );
+            player.setTexture( arrow );
 
-            view.addObject(&player);
+            view.addObject( &player );
+
+            AKCamera* camera = view.getCamera();
+            camera->followObject( &player );
 
             while( !quit )
             {
@@ -58,12 +58,6 @@ int main( int argc, char* args[] )
                 keyboard.Update();
                 main_window->clear();
                 main_window->update();
-                camera->x = ( player.x + arrow->getWidth() / 2 ) - camera->w / 2;
-                camera->y = ( player.y + arrow->getHeight() / 2 ) - camera->h / 2;
-                if( camera->x < 0 ) camera->x = 0;
-                if( camera->x > bgTexture->getWidth() - camera->w ) camera->x = bgTexture->getWidth() - camera->w;
-                if( camera->y < 0 ) camera->y = 0;
-                if( camera->y > bgTexture->getHeight() - camera->h ) camera->y = bgTexture->getHeight() - camera->h;
                 main_window->render();
                 main_window->present();
             }

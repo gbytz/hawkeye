@@ -12,8 +12,11 @@ AKViewport::AKViewport(int x, int y, int width, int height)
 {
     id = COUNT;
     COUNT++;
-    mView = { x, y, width, height };
-    mCamera = mView;
+    mView.x = x;
+    mView.y = y;
+    mView.w = width;
+    mView.h = height;
+    mCamera = AKCamera(x, y, width, height, this);
     mBackgroundColor = {0, 0, 0};
 }
 
@@ -28,6 +31,7 @@ void AKViewport::Update()
     {
         (*it)->Update();
     }
+    mCamera.update();
 }
 
 void AKViewport::Render(SDL_Renderer* renderer)

@@ -14,11 +14,13 @@ class Player : public AKGameObject
         void Update();
         void Draw(AKCamera* camera);
 
-        AKTexture* texture;
+        void setTexture(AKTexture *);
+
 
     protected:
     private:
         bool shot;
+        AKTexture* mTexture;
 };
 
 #endif // PLAYER_H

@@ -10,9 +10,7 @@
 // Forward declarations
 class AKGraphics;
 class AKKeyboard;
-
-typedef SDL_Rect AKCamera;
-
+class AKCamera;
 
 class AKGameObject
 {
@@ -26,13 +24,15 @@ class AKGameObject
         virtual void Update() = 0;
         virtual void Draw(AKCamera* camera) = 0;
 
-        void SetGraphicsComp(AKGraphics* graphics_comp);
-        void SetKeyboardComp(AKKeyboard* keyboard_comp);
+        void setGraphicsComp(AKGraphics* graphics_comp);
+        void setKeyboardComp(AKKeyboard* keyboard_comp);
 
         // Members
         unsigned int id;
         int x;
         int y;
+        int w;
+        int h;
 
         int vX;
         int vY;

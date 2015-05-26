@@ -14,6 +14,8 @@ AKGameObject::AKGameObject()
     COUNT++;
     x = 0;
     y = 0;
+    w = 0;
+    h = 0;
     vX = 0;
     vY = 0;
     angle = 0;
@@ -26,20 +28,12 @@ AKGameObject::~AKGameObject()
     printf("AKGameObject Destructor\n");
 }
 
-void AKGameObject::SetGraphicsComp(AKGraphics* graphics_comp)
+void AKGameObject::setGraphicsComp(AKGraphics* graphics_comp)
 {
     mGraphics = graphics_comp;
 }
 
-void AKGameObject::SetKeyboardComp(AKKeyboard* keyboard_comp)
+void AKGameObject::setKeyboardComp(AKKeyboard* keyboard_comp)
 {
     mKeyboard = keyboard_comp;
-}
-
-std::ostream& operator<<(std::ostream& os, const AKGameObject& obj)
-{
-    os << "id: " << obj.id << std::endl;
-    os << "x: " << obj.x << std::endl;
-    os << "y: " << obj.y << std::endl;
-    return os;
 }
