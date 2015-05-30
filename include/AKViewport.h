@@ -25,8 +25,8 @@ class AKViewport
         AKViewport(int x, int y, int width, int height);
         ~AKViewport();
 
-        void Update();
-        void Render(SDL_Renderer* renderer, double delta);
+        virtual void update();
+        virtual void render(SDL_Renderer* renderer, double delta);
 
         void setBackgroundColor(SDL_Color color);
         SDL_Color getBackgroundColor();

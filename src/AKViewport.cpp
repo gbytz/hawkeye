@@ -25,7 +25,7 @@ AKViewport::~AKViewport()
     printf("AKViewport Destructor\n");
 }
 
-void AKViewport::Update()
+void AKViewport::update()
 {
     for (std::vector<AKGameObject*>::iterator it = mObjects.begin(); it != mObjects.end(); ++it)
     {
@@ -34,7 +34,7 @@ void AKViewport::Update()
     mCamera.update();
 }
 
-void AKViewport::Render(SDL_Renderer* renderer, double delta)
+void AKViewport::render(SDL_Renderer* renderer, double delta)
 {
     SDL_RenderSetViewport( renderer, &mView );
     SDL_RenderCopy( renderer, mBackgroundTexture->getTexture(), &mCamera, NULL );
