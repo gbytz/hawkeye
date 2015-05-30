@@ -1,11 +1,17 @@
 #ifndef AKSCENE_H
 #define AKSCENE_H
 
-// Forward declaration
-class AKViewport;
+// STL includes
+#include <vector>
+
+// Own libs
+#include "AKViewport.h"
+
+// Forwad declarations
+class AKGameObject;
 
 
-class AKScene : AKViewport
+class AKScene : public AKViewport
 {
 	public:
 		AKScene();

@@ -1,7 +1,10 @@
 #include "AKScene.h"
+#include "AKGameObject.h"
+#include "AKTexture.h"
 
-void AKScene::update() : update()
+void AKScene::update()
 {
+    AKViewport::update();
     for (std::vector<AKGameObject*>::iterator it = mObjects.begin(); it != mObjects.end(); ++it)
     {
         (*it)->Update();
@@ -9,8 +12,9 @@ void AKScene::update() : update()
     mCamera.update();
 }
 
-void AKScene::render(SDL_Renderer* renderer, double delta) : render()
+void AKScene::render(SDL_Renderer* renderer, double delta)
 {
+    AKViewport::render( renderer, delta );
     SDL_RenderCopy( renderer, mBackgroundTexture->getTexture(), &mCamera, NULL );
     for (std::vector<AKGameObject*>::iterator it = mObjects.begin(); it != mObjects.end(); ++it)
     {

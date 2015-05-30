@@ -43,13 +43,13 @@ class AKViewport
         unsigned int id;
 
     protected:
+        SDL_Color mBackgroundColor;
+        AKTexture* mBackgroundTexture;
+
     private:
         static unsigned int COUNT;
 
         AKCamera mView;
-        SDL_Color mBackgroundColor;
-        AKTexture* mBackgroundTexture;
-
         AKCamera mCamera;
         std::vector<AKGameObject*> mObjects;
 };
