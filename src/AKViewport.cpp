@@ -34,13 +34,13 @@ void AKViewport::Update()
     mCamera.update();
 }
 
-void AKViewport::Render(SDL_Renderer* renderer)
+void AKViewport::Render(SDL_Renderer* renderer, double delta)
 {
     SDL_RenderSetViewport( renderer, &mView );
     SDL_RenderCopy( renderer, mBackgroundTexture->getTexture(), &mCamera, NULL );
     for (std::vector<AKGameObject*>::iterator it = mObjects.begin(); it != mObjects.end(); ++it)
     {
-        (*it)->Draw( &mCamera );
+        (*it)->Draw( &mCamera , delta );
     }
 }
 

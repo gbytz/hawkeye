@@ -186,17 +186,19 @@ void AKWindow::update()
     }
 }
 
-void AKWindow::render()
+void AKWindow::render(double delta)
 {
+    clear();
     if( !mMinimized ){
         SDL_Rect prevViewport;
         SDL_RenderGetViewport( mRenderer, &prevViewport );
         for (std::vector<AKViewport*>::iterator it = mViewports.begin(); it != mViewports.end(); ++it)
         {
-            (*it)->Render( mRenderer );
+            (*it)->Render( mRenderer, delta );
         }
         SDL_RenderSetViewport( mRenderer, &prevViewport );
     }
+    present();
 }
 
 void AKWindow::present()

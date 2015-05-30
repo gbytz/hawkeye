@@ -34,7 +34,7 @@ void Player::Update()
     y += vY;
 }
 
-void Player::Draw(AKCamera* camera){
+void Player::Draw(AKCamera* camera, double delta){
     SDL_Point point = { 0, mTexture->getHeight() / 2};
     mGraphics->render( mTexture, x - camera->x, y - camera->y, NULL, angle, &point);
 }

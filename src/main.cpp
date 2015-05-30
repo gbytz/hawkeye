@@ -8,16 +8,19 @@
 #include "AKViewport.h"
 #include "AKKeyboard.h"
 #include "AKTexture.h"
+#include "AKTimer.h"
 #include "Player.h"
+
 
 int main( int argc, char* args[] )
 {
     AKEngine engine = AKEngine();
-    if(!engine.start()){
+    if( !engine.start() ){
         printf( "Failed to start engine!\n" );
     }
     else
     {
+            double MS_PER_UPDATE = 15.0;
             bool quit = false;
             SDL_Event event;
             AKWindow* main_window = engine.window();
@@ -25,7 +28,6 @@ int main( int argc, char* args[] )
 
             AKTexture* bgTexture = graphics.loadFromFile("../graphics/background.png");
             AKTexture* arrow = graphics.loadFromFile("../graphics/arrow.png");
-
 
             AKViewport view = AKViewport( 0, 0, main_window->getWidth(), main_window->getHeight() );
             view.setBackgroundTexture( bgTexture );
@@ -42,13 +44,22 @@ int main( int argc, char* args[] )
 
             AKCamera* camera = view.getCamera();
             camera->followObject( &player );
+           
+            AKTimer timer = AKTimer();
+            timer.start();
+            double lag = 0.0;
+            double previous = timer.getTicks();
 
             while( !quit )
             {
-                //Handle events on queue
+                double current = timer.getTicks();
+                double elapsed = current - previous;
+                previous = current;
+                lag += elapsed;
+                
+                // Handl input
                 while( SDL_PollEvent( &event ) != 0 )
                 {
-                    //User requests quit
                     if( event.type == SDL_QUIT )
                     {
                         quit = true;
@@ -56,10 +67,15 @@ int main( int argc, char* args[] )
                     main_window->handleEvent(event);
                 }
                 keyboard.Update();
-                main_window->clear();
-                main_window->update();
-                main_window->render();
-                main_window->present();
+
+                // Update
+                while( lag >= MS_PER_UPDATE ){
+                    main_window->update();
+                    lag -= MS_PER_UPDATE;
+                }
+
+                // Render
+                main_window->render( lag / MS_PER_UPDATE );
             }
     }
     engine.stop();

@@ -25,7 +25,7 @@ class AKWindow
         void focus();   // Focuses on window
         void clear();   // Clears the screen
         void update();	// Update window viewports
-        void render();  // Render window contents
+        void render(double delta);  // Render window contents
         void present(); // Shows window contents
 
         void free(); //Deallocates internals

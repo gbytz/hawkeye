@@ -26,7 +26,7 @@ class AKViewport
         ~AKViewport();
 
         void Update();
-        void Render(SDL_Renderer* renderer);
+        void Render(SDL_Renderer* renderer, double delta);
 
         void setBackgroundColor(SDL_Color color);
         SDL_Color getBackgroundColor();

@@ -12,7 +12,7 @@ class Player : public AKGameObject
         ~Player();
 
         void Update();
-        void Draw(AKCamera* camera);
+        void Draw(AKCamera* camera, double delta);
 
         void setTexture(AKTexture *);
 

@@ -22,7 +22,7 @@ class AKGameObject
         AKGameObject();
         virtual ~AKGameObject();
         virtual void Update() = 0;
-        virtual void Draw(AKCamera* camera) = 0;
+        virtual void Draw(AKCamera* camera, double delta) = 0;
 
         void setGraphicsComp(AKGraphics* graphics_comp);
         void setKeyboardComp(AKKeyboard* keyboard_comp);
