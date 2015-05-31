@@ -21,14 +21,16 @@ Player::~Player()
 
 void Player::update()
 {
-    if( mKeyboard->LeftPressed() ) angle--;
-    if( mKeyboard->RightPressed() ) angle++;
-
-    if( !shot && mKeyboard->SpaceBarPressed() ){
-        shot = true;
-        double f = 50;
-        vX = f * cos(angle * PI / 180.0);
-        vY = f * sin(angle * PI / 180.0);
+    if( !shot )
+    {
+        if( mKeyboard->LeftPressed() ) angle--;
+        if( mKeyboard->RightPressed() ) angle++;
+        if( mKeyboard->SpaceBarPressed() ){
+            shot = true;
+            double f = 50;
+            vX = f * cos(angle * PI / 180.0);
+            vY = f * sin(angle * PI / 180.0);
+        }
     }
     x += vX;
     y += vY;
