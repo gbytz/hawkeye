@@ -2,7 +2,6 @@
 #define AKGAMEOBJECT_H
 
 // STL includes
-#include <ostream>
 
 // External libs
 #include <SDL2/SDL.h>
@@ -21,8 +20,8 @@ class AKGameObject
         // Instance methods
         AKGameObject();
         virtual ~AKGameObject();
-        virtual void Update() = 0;
-        virtual void Draw(AKCamera* camera, double delta) = 0;
+        virtual void update() = 0;
+        virtual void render(AKCamera* camera, double delta) = 0;
 
         void setGraphicsComp(AKGraphics* graphics_comp);
         void setKeyboardComp(AKKeyboard* keyboard_comp);
@@ -38,8 +37,6 @@ class AKGameObject
         int vY;
 
         double angle;
-        // Friend methods
-        friend std::ostream& operator<<(std::ostream& os, const AKGameObject& obj);
 
     protected:
         AKGraphics* mGraphics;

@@ -11,8 +11,8 @@ class Player : public AKGameObject
         Player(int x, int y);
         ~Player();
 
-        void Update();
-        void Draw(AKCamera* camera, double delta);
+        void update();
+        void render(AKCamera* camera, double delta);
 
         void setTexture(AKTexture *);
 
