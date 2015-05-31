@@ -28,14 +28,13 @@ class AKGameObject
 
         // Members
         unsigned int id;
-        int x;
-        int y;
-        int w;
-        int h;
 
-        int vX;
-        int vY;
-
+        double x;
+        double y;
+        double w;
+        double h;
+        double vX;
+        double vY;
         double angle;
 
     protected:
