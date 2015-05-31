@@ -2,17 +2,11 @@
 #define AKVIEWPORT_H
 
 // STL includes
-#include <vector>
-
 // External libs
 #include <SDL2/SDL.h>
 
 // Own libs
-#include "AKCamera.h"
-
 // Forward declarations
-class AKTexture;
-class AKGameObject;
 
 
 class AKViewport
@@ -31,27 +25,15 @@ class AKViewport
         void setBackgroundColor(SDL_Color color);
         SDL_Color getBackgroundColor();
 
-        void setBackgroundTexture(AKTexture* texture);
-        AKTexture* getBackgroundTexture();
-
-        AKCamera* getCamera();
-
-        unsigned int addObject(AKGameObject* object_pointer);
-        void removeObject(unsigned int object_handle);
-
         // Members
         unsigned int id;
 
     protected:
+        SDL_Rect mView;
         SDL_Color mBackgroundColor;
-        AKTexture* mBackgroundTexture;
 
     private:
         static unsigned int COUNT;
-
-        AKCamera mView;
-        AKCamera mCamera;
-        std::vector<AKGameObject*> mObjects;
 };
 
 #endif // AKVIEWPORT_H
