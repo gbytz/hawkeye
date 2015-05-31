@@ -27,19 +27,16 @@ int main( int argc, char* args[] )
             AKGraphics graphics = AKGraphics(main_window);
 
             AKTexture* bgTexture = graphics.loadFromFile("../graphics/background.png");
-            AKTexture* arrow = graphics.loadFromFile("../graphics/arrow.png");
-
             AKScene scene = AKScene( 3840, 1080, main_window->getWidth(), main_window->getHeight() );
             scene.setBackgroundTexture( bgTexture );
             main_window->addViewport( &scene );
 
             AKKeyboard keyboard = AKKeyboard();
-
+            AKTexture* arrow = graphics.loadFromFile("../graphics/arrow.png");
             Player player = Player( 5, scene.h - arrow->h - 5 );
             player.setGraphicsComp( &graphics );
             player.setKeyboardComp( &keyboard );
             player.setTexture( arrow );
-
             scene.addObject( &player );
 
             AKCamera* camera = scene.camera();
