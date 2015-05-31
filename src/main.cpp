@@ -35,7 +35,7 @@ int main( int argc, char* args[] )
 
             AKKeyboard keyboard = AKKeyboard();
 
-            Player player = Player( 5, scene.h - arrow->getHeight() - 5 );
+            Player player = Player( 5, scene.h - arrow->h - 5 );
             player.setGraphicsComp( &graphics );
             player.setKeyboardComp( &keyboard );
             player.setTexture( arrow );

@@ -37,13 +37,13 @@ void Player::update()
 }
 
 void Player::render(AKCamera* camera, double delta){
-    SDL_Point point = { 0, mTexture->getHeight() / 2};
+    SDL_Point point = { 0, mTexture->h / 2};
     mGraphics->render( mTexture, x - camera->x, y - camera->y, NULL, angle, &point);
 }
 
 void Player::setTexture(AKTexture* texture)
 {
     mTexture = texture;
-    w = texture->getWidth();
-    h = texture->getHeight();
+    w = texture->w;
+    h = texture->h;
 }

@@ -26,18 +26,17 @@ class AKTexture
 		//Set alpha modulation
 		void setAlpha( Uint8 alpha );
 
-		//Gets image dimensions
-		int getWidth();
-		int getHeight();
+		//Image dimensions
+		int w;
+		int h;
+
 		SDL_Texture* getTexture();
 
 	private:
 		//The actual hardware texture
 		SDL_Texture* mTexture;
 
-		//Image dimensions
-		int mWidth;
-		int mHeight;
+
 };
 
 #endif // AKTEXTURE_H

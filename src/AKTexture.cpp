@@ -4,8 +4,8 @@ AKTexture::AKTexture( int width, int height, SDL_Texture* texture )
 {
 	//Initialize
 	mTexture = texture;
-	mWidth = width;
-	mHeight = height;
+	w = width;
+	h = height;
 }
 
 AKTexture::~AKTexture()
@@ -22,8 +22,8 @@ void AKTexture::free()
 	{
 		SDL_DestroyTexture( mTexture );
 		mTexture = NULL;
-		mWidth = 0;
-		mHeight = 0;
+		w = 0;
+		h = 0;
 	}
 }
 
@@ -43,16 +43,6 @@ void AKTexture::setAlpha( Uint8 alpha )
 {
 	//Modulate texture alpha
 	SDL_SetTextureAlphaMod( mTexture, alpha );
-}
-
-int AKTexture::getWidth()
-{
-	return mWidth;
-}
-
-int AKTexture::getHeight()
-{
-	return mHeight;
 }
 
 SDL_Texture* AKTexture::getTexture()
