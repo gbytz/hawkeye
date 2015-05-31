@@ -5,7 +5,7 @@
 #include "AKEngine.h"
 #include "AKWindow.h"
 #include "AKGraphics.h"
-#include "AKViewport.h"
+#include "AKScene.h"
 #include "AKKeyboard.h"
 #include "AKTexture.h"
 #include "AKTimer.h"
@@ -29,22 +29,22 @@ int main( int argc, char* args[] )
             AKTexture* bgTexture = graphics.loadFromFile("../graphics/background.png");
             AKTexture* arrow = graphics.loadFromFile("../graphics/arrow.png");
 
-            AKViewport view = AKViewport( 0, 0, main_window->getWidth(), main_window->getHeight() );
-            view.setBackgroundTexture( bgTexture );
-            main_window->addViewport( &view );
+            AKScene scene = AKScene( 3840, 1080, main_window->getWidth(), main_window->getHeight() );
+            scene.setBackgroundTexture( bgTexture );
+            main_window->addViewport( &scene );
 
             AKKeyboard keyboard = AKKeyboard();
 
-            Player player = Player( 5, view.getBackgroundTexture()->getHeight() - arrow->getHeight() - 5 );
+            Player player = Player( 5, scene.h - arrow->getHeight() - 5 );
             player.setGraphicsComp( &graphics );
             player.setKeyboardComp( &keyboard );
             player.setTexture( arrow );
 
-            view.addObject( &player );
+            scene.addObject( &player );
 
-            AKCamera* camera = view.getCamera();
+            AKCamera* camera = scene.camera();
             camera->followObject( &player );
-           
+
             AKTimer timer = AKTimer();
             timer.start();
             double lag = 0.0;
@@ -56,8 +56,8 @@ int main( int argc, char* args[] )
                 double elapsed = current - previous;
                 previous = current;
                 lag += elapsed;
-                
-                // Handl input
+
+                // Handle input
                 while( SDL_PollEvent( &event ) != 0 )
                 {
                     if( event.type == SDL_QUIT )
