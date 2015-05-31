@@ -6,15 +6,17 @@
 
 // Own libs
 #include "AKViewport.h"
+#include "AKCamera.h"
 
-// Forwad declarations
+// Forward declarations
+class AKTexture;
 class AKGameObject;
 
 
 class AKScene : public AKViewport
 {
 	public:
-		AKScene();
+		AKScene(int width, int height, int viewWidth, int viewHeight);
 		~AKScene();
 
 		void update();
@@ -23,11 +25,18 @@ class AKScene : public AKViewport
 		int w;
 		int h;
 
+        AKCamera* camera();
+
+        void setBackgroundTexture(AKTexture* texture);
+        AKTexture* getBackgroundTexture();
+
         unsigned int addObject(AKGameObject* object_pointer);
         void removeObject(unsigned int object_handle);
 
 	protected:
-	private:	
+	private:
+	    AKTexture* mBackgroundTexture;
+
         AKCamera mCamera;
         std::vector<AKGameObject*> mObjects;
 };

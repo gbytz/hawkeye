@@ -4,8 +4,10 @@
 // Extermal libs
 #include <SDL2/SDL.h>
 
-class AKViewport;
+// Forward declarations
+class AKScene;
 class AKGameObject;
+
 
 class AKCamera : public SDL_Rect
 {
@@ -17,7 +19,7 @@ class AKCamera : public SDL_Rect
 		};
 
 		AKCamera();
-		AKCamera(int x, int y, int w, int h, AKViewport* viewport);
+		AKCamera(int x, int y, int w, int h, AKScene* scene);
 		~AKCamera();
 
 		void update();
@@ -28,12 +30,10 @@ class AKCamera : public SDL_Rect
 
 	private:
 		CameraState mState;
-		AKViewport* mViewport;
+		AKScene* mScene;
 		AKGameObject* mObject;
 
 };
-
-
 
 #endif // AKCAMERA_H
 

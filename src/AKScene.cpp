@@ -2,12 +2,25 @@
 #include "AKGameObject.h"
 #include "AKTexture.h"
 
+AKScene::AKScene(int width, int height, int viewWidth, int viewHeight) : AKViewport(0, 0, viewWidth, viewHeight)
+{
+    w = width;
+    h = height;
+    mCamera = AKCamera(0, 0, viewWidth, viewHeight, this);
+    mBackgroundTexture = NULL;
+}
+
+AKScene::~AKScene()
+{
+    printf("AKScene Destructor\n");
+}
+
 void AKScene::update()
 {
     AKViewport::update();
     for (std::vector<AKGameObject*>::iterator it = mObjects.begin(); it != mObjects.end(); ++it)
     {
-        (*it)->Update();
+        (*it)->update();
     }
     mCamera.update();
 }
@@ -15,11 +28,31 @@ void AKScene::update()
 void AKScene::render(SDL_Renderer* renderer, double delta)
 {
     AKViewport::render( renderer, delta );
-    SDL_RenderCopy( renderer, mBackgroundTexture->getTexture(), &mCamera, NULL );
+
+    if(mBackgroundTexture != NULL)
+    {
+        SDL_RenderCopy( renderer, mBackgroundTexture->getTexture(), &mCamera, NULL );
+    }
+
     for (std::vector<AKGameObject*>::iterator it = mObjects.begin(); it != mObjects.end(); ++it)
     {
-        (*it)->Draw( &mCamera , delta );
+        (*it)->render( &mCamera, delta );
     }
+}
+
+AKCamera* AKScene::camera()
+{
+    return &mCamera;
+}
+
+void AKScene::setBackgroundTexture(AKTexture* texture)
+{
+    mBackgroundTexture = texture;
+}
+
+AKTexture* AKScene::getBackgroundTexture()
+{
+    return mBackgroundTexture;
 }
 
 unsigned int AKScene::addObject(AKGameObject* object_pointer)
